@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLayer.Repositories.DeparmentRepositories;
+using BusinessLayer.Requests;
 using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -17,14 +18,14 @@ namespace WebApi.Controllers
     [ApiController]
     public class DeparmentController : ControllerBase
     {
-        private readonly DataContext _context;
+   
         private readonly IDeparmentRepository _deparmentRepository;
 
         public DeparmentController(DataContext context, IDeparmentRepository deparmentRepository)
         {
-            _context = context;
             _deparmentRepository = deparmentRepository;
         }
+
         // GET: api/<DeparmentController>
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -39,15 +40,22 @@ namespace WebApi.Controllers
 
         // GET api/<DeparmentController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var response = await _deparmentRepository.GetDeparmentByIdWithUser(id);
+            if (response == null)
+            {
+                return NotFound("Bulunamadı");
+            }
+            return Ok(response);
         }
 
         // POST api/<DeparmentController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post(PostDeparmentRequest postDeparmentRequest)
         {
+            var request = _deparmentRepository.PostDepartment(postDeparmentRequest);
+            return Ok();
         }
 
         // PUT api/<DeparmentController>/5

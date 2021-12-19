@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace DataLayer.Entities
 {
@@ -9,6 +10,8 @@ namespace DataLayer.Entities
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+        [IgnoreDataMember]
         public virtual ICollection<User> Users{ get; set; }
     }
 }
+

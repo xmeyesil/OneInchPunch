@@ -40,7 +40,7 @@ namespace WebApi
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
 
-            services.AddTransient<IDeparmentRepository, DeparmentRepository>();
+            services.AddScoped<IDeparmentRepository, DeparmentRepository>();
 
             services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration["ConnectionStrings"]));
 
