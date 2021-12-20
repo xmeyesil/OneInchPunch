@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLayer.Repositories.AuthenticationRepository;
 using BusinessLayer.Repositories.DeparmentRepositories;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -41,6 +42,7 @@ namespace WebApi
             });
 
             services.AddScoped<IDeparmentRepository, DeparmentRepository>();
+            services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
 
             services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration["ConnectionStrings"]));
 

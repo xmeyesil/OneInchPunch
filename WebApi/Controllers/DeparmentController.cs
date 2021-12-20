@@ -21,7 +21,7 @@ namespace WebApi.Controllers
    
         private readonly IDeparmentRepository _deparmentRepository;
 
-        public DeparmentController(DataContext context, IDeparmentRepository deparmentRepository)
+        public DeparmentController(IDeparmentRepository deparmentRepository)
         {
             _deparmentRepository = deparmentRepository;
         }
