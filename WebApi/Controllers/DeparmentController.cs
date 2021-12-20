@@ -39,7 +39,7 @@ namespace WebApi.Controllers
         }
 
         // GET api/<DeparmentController>/5
-        [HttpGet("{id}")]
+        [HttpGet("deparmentWithUser/{id}")]
         public async Task<IActionResult> Get(int id)
         {
             var response = await _deparmentRepository.GetDeparmentByIdWithUser(id);
@@ -50,24 +50,54 @@ namespace WebApi.Controllers
             return Ok(response);
         }
 
+        [HttpGet("/getById/{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var response = await _deparmentRepository.GetDeparmentById(id);
+            if (response == null)
+            {
+                return NotFound("Bulunamadı");
+            }
+
+            return Ok(response);
+        }
+
         // POST api/<DeparmentController>
         [HttpPost]
         public async Task<IActionResult> Post(PostDeparmentRequest postDeparmentRequest)
         {
-            var request = _deparmentRepository.PostDepartment(postDeparmentRequest);
-            return Ok();
+            
+            var response = await _deparmentRepository.PostDepartment(postDeparmentRequest);
+            if (response == null)
+            {
+                return NotFound("Hata oluştu");
+            }
+            return Created(response.Id.ToString() ,response);
         }
 
         // PUT api/<DeparmentController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(PutDeparmentRequest putDeparmentRequest, int id)
         {
+            var response = await _deparmentRepository.PutDeparment(putDeparmentRequest, id);
+            if (response == null)
+            {
+                return NotFound("Bulunamadı");
+            }
+
+            return Ok(response);
         }
 
         // DELETE api/<DeparmentController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            var response = await _deparmentRepository.DeleteDeparment(id);
+            if (response)
+            {
+                return NoContent();
+            }
+            return NotFound();
         }
     }
 }

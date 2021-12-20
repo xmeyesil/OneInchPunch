@@ -14,4 +14,3 @@ namespace DataLayer.Entities
         public virtual ICollection<User> Users{ get; set; }
     }
 }
-

@@ -10,6 +10,9 @@ namespace BusinessLayer.Repositories.DeparmentRepositories
         Task<List<GetDeparmentResponse>> GetDeparment();
         Task<GetDeparmentByIdWithUserResponse> GetDeparmentByIdWithUser(int id);
         Task<PostDeparmentResponse> PostDepartment(PostDeparmentRequest postDeparmentRequest);
-        //Task<GetDeparmentByIdResponse> GetDeparmentById(int id);
+
+        Task<GetDeparmentByIdResponse> GetDeparmentById(int id);
+        Task<PutDeparmentResponse> PutDeparment(PutDeparmentRequest putDeparmentRequest, int id);
+        Task<bool> DeleteDeparment(int id);
     }
 }
