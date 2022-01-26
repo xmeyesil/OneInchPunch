@@ -8,7 +8,7 @@ namespace DataLayer.Entities
         public int Id { get; set; }
         [Required]
         [MaxLength(50)]
-        public string FirsName { get; set; }
+        public string FirstName { get; set; }
         [Required]
         [MaxLength(50)]
         public string LastName { get; set; }

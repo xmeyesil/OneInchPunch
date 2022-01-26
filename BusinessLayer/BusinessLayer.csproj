@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Repositories\AuthenticationRepository\" />
-    <Folder Include="Requests\" />
   </ItemGroup>
 
   <ItemGroup>

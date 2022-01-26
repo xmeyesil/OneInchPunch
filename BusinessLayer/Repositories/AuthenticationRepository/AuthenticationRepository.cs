@@ -27,7 +27,7 @@ namespace BusinessLayer.Repositories.AuthenticationRepository
             {
                 LoginResponse response = new LoginResponse()
                 {
-                    FirsName = checkUser.FirsName,
+                    FirstName = checkUser.FirstName,
                     LastName = checkUser.LastName
                 };
                 return response;

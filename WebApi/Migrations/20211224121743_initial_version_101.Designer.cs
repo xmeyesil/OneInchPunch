@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211217184221_Initialvs_100")]
-    partial class Initialvs_100
+    [Migration("20211224121743_initial_version_101")]
+    partial class initial_version_101
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace WebApi.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DataLayer.Entitiyes.Customer", b =>
+            modelBuilder.Entity("DataLayer.Entities.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,17 +29,21 @@ namespace WebApi.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.Deparment", b =>
+            modelBuilder.Entity("DataLayer.Entities.Deparment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -47,14 +51,16 @@ namespace WebApi.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Deparments");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.Issue", b =>
+            modelBuilder.Entity("DataLayer.Entities.Issue", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,7 +71,9 @@ namespace WebApi.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Point")
                         .HasColumnType("int");
@@ -85,7 +93,7 @@ namespace WebApi.Migrations
                     b.ToTable("Issues");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.IssueLog", b =>
+            modelBuilder.Entity("DataLayer.Entities.IssueLog", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -93,7 +101,9 @@ namespace WebApi.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Comment")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -119,7 +129,7 @@ namespace WebApi.Migrations
                     b.ToTable("IssueLogs");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.Manager", b =>
+            modelBuilder.Entity("DataLayer.Entities.Manager", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,7 +146,7 @@ namespace WebApi.Migrations
                     b.ToTable("Managers");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.Role", b =>
+            modelBuilder.Entity("DataLayer.Entities.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -144,17 +154,21 @@ namespace WebApi.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.Status", b =>
+            modelBuilder.Entity("DataLayer.Entities.Status", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,14 +176,16 @@ namespace WebApi.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Status");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.Task", b =>
+            modelBuilder.Entity("DataLayer.Entities.Task", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -192,7 +208,9 @@ namespace WebApi.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -206,27 +224,34 @@ namespace WebApi.Migrations
                     b.ToTable("Tasks");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.User", b =>
+            modelBuilder.Entity("DataLayer.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("DeparmentId")
+                    b.Property<int>("DeparmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirsName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("RoleId")
                         .HasColumnType("int");
@@ -240,7 +265,7 @@ namespace WebApi.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.UserManager", b =>
+            modelBuilder.Entity("DataLayer.Entities.UserManager", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -262,13 +287,13 @@ namespace WebApi.Migrations
                     b.ToTable("UserManagers");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.Issue", b =>
+            modelBuilder.Entity("DataLayer.Entities.Issue", b =>
                 {
-                    b.HasOne("DataLayer.Entitiyes.Status", "Status")
+                    b.HasOne("DataLayer.Entities.Status", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId");
 
-                    b.HasOne("DataLayer.Entitiyes.Task", "Task")
+                    b.HasOne("DataLayer.Entities.Task", "Task")
                         .WithMany()
                         .HasForeignKey("TaskId");
 
@@ -277,13 +302,13 @@ namespace WebApi.Migrations
                     b.Navigation("Task");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.IssueLog", b =>
+            modelBuilder.Entity("DataLayer.Entities.IssueLog", b =>
                 {
-                    b.HasOne("DataLayer.Entitiyes.Issue", "Issue")
+                    b.HasOne("DataLayer.Entities.Issue", "Issue")
                         .WithMany()
                         .HasForeignKey("IssueId");
 
-                    b.HasOne("DataLayer.Entitiyes.Status", "Status")
+                    b.HasOne("DataLayer.Entities.Status", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId");
 
@@ -292,22 +317,22 @@ namespace WebApi.Migrations
                     b.Navigation("Status");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.Manager", b =>
+            modelBuilder.Entity("DataLayer.Entities.Manager", b =>
                 {
-                    b.HasOne("DataLayer.Entitiyes.User", "User")
+                    b.HasOne("DataLayer.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.Task", b =>
+            modelBuilder.Entity("DataLayer.Entities.Task", b =>
                 {
-                    b.HasOne("DataLayer.Entitiyes.User", "CreatedBy")
+                    b.HasOne("DataLayer.Entities.User", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById");
 
-                    b.HasOne("DataLayer.Entitiyes.Customer", "Customer")
+                    b.HasOne("DataLayer.Entities.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId");
 
@@ -316,13 +341,15 @@ namespace WebApi.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.User", b =>
+            modelBuilder.Entity("DataLayer.Entities.User", b =>
                 {
-                    b.HasOne("DataLayer.Entitiyes.Deparment", "Deparment")
+                    b.HasOne("DataLayer.Entities.Deparment", "Deparment")
                         .WithMany("Users")
-                        .HasForeignKey("DeparmentId");
+                        .HasForeignKey("DeparmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("DataLayer.Entitiyes.Role", "Role")
+                    b.HasOne("DataLayer.Entities.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId");
 
@@ -331,13 +358,13 @@ namespace WebApi.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.UserManager", b =>
+            modelBuilder.Entity("DataLayer.Entities.UserManager", b =>
                 {
-                    b.HasOne("DataLayer.Entitiyes.Manager", "Manager")
+                    b.HasOne("DataLayer.Entities.Manager", "Manager")
                         .WithMany()
                         .HasForeignKey("ManagerId");
 
-                    b.HasOne("DataLayer.Entitiyes.User", "User")
+                    b.HasOne("DataLayer.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
@@ -346,7 +373,7 @@ namespace WebApi.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DataLayer.Entitiyes.Deparment", b =>
+            modelBuilder.Entity("DataLayer.Entities.Deparment", b =>
                 {
                     b.Navigation("Users");
                 });

@@ -16,6 +16,8 @@ using BusinessLayer.Repositories.AuthenticationRepository;
 using BusinessLayer.Repositories.DeparmentRepositories;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using BusinessLayer.Repositories.CustomerRepository;
+using BusinessLayer.Repositories.UserRepositories;
 
 namespace WebApi
 {
@@ -43,6 +45,8 @@ namespace WebApi
 
             services.AddScoped<IDeparmentRepository, DeparmentRepository>();
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration["ConnectionStrings"]));
 
@@ -55,12 +59,12 @@ namespace WebApi
                     Description = "One Inch Punch Training Service",
                     Contact = new Microsoft.OpenApi.Models.OpenApiContact
                     {
-                        Name = "Selim Can Bagdatli",
-                        Email = "selimcan.bagdatli@bs.nttdata.com.tr",
+                        Name = "Mahmut Erkan Yesil ",
+                        Email = "mahmuterkan.yesil@bs.nttdata.com.tr",
                     },
                     License = new Microsoft.OpenApi.Models.OpenApiLicense
                     {
-                        Name = "Selim Can Bagdatli",
+                        Name = "Mahmut Erkan Yesil",
                     }
                 });
             });
@@ -91,7 +95,7 @@ namespace WebApi
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "JirabackendService API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "OneInchPunch");
             });
         }
     }

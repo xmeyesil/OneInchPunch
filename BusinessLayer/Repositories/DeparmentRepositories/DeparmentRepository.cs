@@ -7,7 +7,6 @@ using BusinessLayer.Responses;
 using DataLayer;
 using DataLayer.Entities;
 using Microsoft.EntityFrameworkCore;
-using Task = System.Threading.Tasks.Task;
 
 namespace BusinessLayer.Repositories.DeparmentRepositories
 {

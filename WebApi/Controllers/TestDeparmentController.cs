@@ -24,6 +24,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            var a = 1;
             var response = await _context.Deparments
                 .Include(d => d.Users)
                 .ThenInclude(u=> u.Role)
